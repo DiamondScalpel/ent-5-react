@@ -69,7 +69,8 @@
 .pokedex__buttons {
     display: grid;
     gap: 10px;
-    width: 50%;
+    width: 100%;
+    max-width: 100%;
     grid-template-columns: auto;
     justify-content: center;
 }
