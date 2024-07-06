@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.pokedex__header {
+    width: 100%;
+    background-color: #cc0000;
+    padding-top: 40px;
+}
+.pokedex__header::after{
+    content: " ";
+    background-color: #0e0e0e;
+    width: 100%;
+    position: absolute;
+    height: 40px;
+}
+.pokedex__title{
+    margin-top: 15px;
+    text-align: left;
+    padding: 40px;
+    position: relative;
+}
 .pokedex__title span {
     color: red;
 }
@@ -7,4 +27,49 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 10px;
+}
+.pokedex__form {
+    padding: 20px;
+    display: flex;
+    margin: 20px;
+}
+.pokedex__input:focus::placeholder {
+    color: transparent;
+  }
+.pokedex__input {
+    display: inline-block;
+    font-family: inherit;
+    text-align: center;
+    box-shadow: 2px 0 15px #b9b9b9;
+    border: none;
+    padding: 5px;
+    gap: 10px;
+}
+.pokedex__input::placeholder{
+    margin-left: 60px;
+}
+.pokedex__input:hover {
+    cursor: text;
+}
+.pokedex__btn {
+    background-color: #cc0000;
+    color: white;
+    padding: 5px 20px 5px 20px;
+    border: none;
+    cursor: pointer;
+    transition: transform .5s,
+                box-shadow .5s;
+}
+.pokedex__btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #cc0000;
+    transition: transform .5s,
+                box-shadow .5s;
+}
+.pokedex__buttons {
+    display: grid;
+    gap: 10px;
+    width: 50%;
+    grid-template-columns: auto;
+    justify-content: center;
 }

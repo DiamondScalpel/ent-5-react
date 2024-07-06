@@ -1,0 +1,26 @@
+.pokedex__select{
+	display: inline-block;
+	width: 100%;
+    max-width: 250px;
+	cursor: pointer;
+  	padding: 7px 10px;
+    margin-left: 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #7b7b7b;
+	font-size: 1em;
+	color: #999;
+	border:2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+.pokedex__select:hover{
+    background-color: #ED8F8F;
+}
+.pokedex__option__list:hover{
+    background-color: #CC0000;
+}

@@ -7,7 +7,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform .5s,
+                box-shadow .5s;
 }
+.pokecard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px black;
+    transition: transform .5s,
+                box-shadow .5s;
+}
+
 .pokecard__back {
     background-color: black;
     position: absolute;
@@ -40,7 +49,7 @@
 .pokecard__stats li {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 /*------Colors------*/
 .grass {
