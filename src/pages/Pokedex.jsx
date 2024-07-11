@@ -14,13 +14,15 @@ const Pokedex = () => {
 
   const trainer = useSelector(store => store.trainer);
 
+  // Initial Page Load
   useEffect(() => {
-    if (selectValue) {
-      getType(selectValue)
-    } else {
-      const url = 'https://pokeapi.co/api/v2/pokemon?limit=150';
-      getPokemons(url);
-    }
+    const url = 'https://pokeapi.co/api/v2/pokemon?limit=1500';
+    getPokemons(url);
+  }, [])
+
+  useEffect(() => {
+    getType(selectValue)
+
   }, [selectValue])
 
   const textInput = useRef();
@@ -31,8 +33,6 @@ const Pokedex = () => {
     textInput.current.value = '';
   }
 
-  // console.log(pokemons);
-
   const pokeSearch = (poke) => {
     const perName = poke.name.includes(inputValue);
     return perName;
@@ -42,6 +42,26 @@ const Pokedex = () => {
 
   const pagination = (currPage) => {
     return pokemons?.results.slice((currPage - 1) * q, currPage * q);
+  }
+
+  const handleDataInView = (page, inputValue) => {
+    if (inputValue !== '') {
+      return (
+        pokemons?.results.filter(pokeSearch)?.length > 0 ? pokemons?.results.filter(pokeSearch).map((poke) => (
+          <PokeCard
+            key={poke.url}
+            url={poke.url}
+          />
+        )) : <p className=''>No pokemon found</p>
+      )
+    } else {
+      return pagination(page) && pagination(page)?.filter(pokeSearch).map((poke) => (
+        <PokeCard
+          key={poke.url}
+          url={poke.url}
+        />
+      ))
+    }
   }
 
   return (
@@ -60,20 +80,15 @@ const Pokedex = () => {
         </div>
         <div className='pokedex__container'>
           {
-            pagination(page) && pagination(page)?.filter(pokeSearch).map((poke) => (
-              <PokeCard
-                key={poke.url}
-                url={poke.url}
-              />
-            ))
+            handleDataInView(page, inputValue)
           }
           <div className='pokedex__buttons'>
-          <button className='pokedex__btn' onClick={() => {
-            if (page > 1) setPage(page - 1)
-          }}>Pagina Anterior</button>
-          <button className='pokedex__btn' onClick={() => {
-            if (page * q < pokemons?.results?.length) setPage(page + 1)
-          }}>Pagina Siguiente</button>
+            <button className='pokedex__btn' onClick={() => {
+              if (page > 1) setPage(page - 1)
+            }}>Pagina Anterior</button>
+            <button className='pokedex__btn' onClick={() => {
+              if (page * q < pokemons?.results?.length) setPage(page + 1)
+            }}>Pagina Siguiente</button>
           </div>
         </div>
       </section>
