@@ -1,79 +1,97 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
-import './styles/pokeInfo.css';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import "./styles/pokeInfo.css";
 
-const PokeInfo = () => {
+export default () => {
+  const params = useParams();
 
-    const params = useParams();
+  const [pokemon, getPokemon] = useFetch();
+  const [bgColor, setBgColor] = useState("white");
 
-    const [pokemon, getPokemon] = useFetch();
-    
-    useEffect(() => {
-      const url = `https://pokeapi.co/api/v2/pokemon/${params.id}`;
-      getPokemon(url);
-    }, []);
-    
+  useEffect(() => {
+    const url = `https://pokeapi.co/api/v2/pokemon/${params.id}`;
+    getPokemon(url);
+  }, []);
 
-
-    console.log(pokemon);
+  const capitalizeString = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
   return (
-    <section className='pokeinfo'>
-      <div className='pokeinfo__container'>
-      <figure className='pokeinfo__img'>
-        <img className='pokeinfo__img2' src={pokemon?.sprites.other['official-artwork'].front_default} alt="pokemon image" />
-      </figure>
-      <span className='pokeinfo__span'># {pokemon?.id}</span>
-      <h2 className='pokeinfo__title__h2'>{pokemon?.name}</h2>
-      <ul className='pokeinfo__list'>
-        <li className='pokeinfo__item'><span>weight</span><span>{pokemon?.weight}</span></li>
-        <li className='pokeinfo__item'><span>height</span><span>{pokemon?.height}</span></li>
-      </ul>
-      <div className='pokeinfo__container'>
-        <article className='pokeinfo__article'>
-          <h3 className='pokeinfo__title__h3'>type</h3>
-          <ul className='pokeinfo__list'>
-            {
-              pokemon?.types.map(type => (
-                <li className='pokeinfo__item' key={type.type.url}>{type.type.name}</li>
-              ))
-            }
-          </ul>
-        </article>
-        <article className='pokeinfo__article'>
-          <h3 className='pokeinfo__title__h3'>skills</h3>
-          <ul className='pokeinfo__list'>
-            {
-              pokemon?.abilities.map(skill => (
-                <li className='pokeinfo__item' key={skill.ability.url}>{skill.ability.name}</li>
-              ))
-            }
-          </ul>
-        </article>
-      </div>
-      <h2 className='pokeinfo__title__h2'>Stats</h2>
-      <ul className='pokeinfo__list'>
-        {
-          pokemon?.stats.map(stat => (
-            <li className='pokeinfo__item' key={stat.stat.url}><span>{stat.stat.name}</span><span>{stat.base_stat}/150</span>
-            <div><div></div></div></li>
-          ))
-        }
-      </ul>
-      </div>
-      <div className='pokeinfo__container'>
-      <h2 className='pokeinfo__title__h2'>Movements</h2>
-      <ul className='pokeinfo__list'>
-        {
-          pokemon?.moves.map(move => (
-            <li className='pokeinfo__item' key={move.move.url}>{move.move.name}</li>
-          ))
-        }
-        </ul>
-        </div>
-    </section>
-  )
-}
+    <main className="main-container">
+      <div className="header-container"></div>
+      <div className="container">
+        <figure
+          className={`image-container ${
+            pokemon?.types?.[0]?.type?.name
+              ? pokemon?.types?.[0]?.type?.name
+              : "default"
+          }-bg-gradient`}
+        >
+          <img
+            className="pokemon-img-container"
+            src={pokemon?.sprites.other["official-artwork"].front_default}
+          ></img>
+        </figure>
 
-export default PokeInfo;
+        <p className="pokemon-id">#{pokemon?.id}</p>
+        <h2 className="pokemon-name">
+          {pokemon?.name ? capitalizeString(pokemon?.name) : pokemon?.name}
+        </h2>
+
+        <div className="altura-peso-container">
+          <div className="peso-container">
+            <p className="peso-text">Peso</p>
+            <p className="peso-num">{pokemon?.weight}</p>
+          </div>
+          <div className="altura-container">
+            <p className="altura-text">Altura</p>
+            <p className="altura-num">{pokemon?.height}</p>
+          </div>
+        </div>
+
+        <div className="tipos-habilidades-container">
+          <div className="tipos-container">
+            <h3>Tipo</h3>
+            <ul className="tipos-lista">
+              {pokemon?.types.map((type) => (
+                <li key={type.type.url}>{capitalizeString(type.type.name)}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="habilidades-container">
+            <h3>Habilidades</h3>
+            <ul className="habilidades-lista">
+              {pokemon?.abilities.map((skill) => (
+                <li key={skill.ability.url}>{capitalizeString(skill.ability.name)}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="estadisticas-container">
+          <h2>Stats</h2>
+          <ul className="estadisticas-lista">
+            {pokemon?.stats.map((stat) => (
+              <li key={stat.stat.url}>
+                <span> {capitalizeString(stat.stat.name)}</span>
+                <span> {stat.base_stat}/150</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="movimientos-container">
+        <h2>Movements</h2>
+        <ul className="movimientos-lista">
+          {pokemon?.moves.map((move) => (
+            <li className="movimientos-item" key={move.move.url}>
+              {capitalizeString(move.move.name)}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
+  );
+};

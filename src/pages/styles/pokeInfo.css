@@ -1,45 +1,186 @@
-.pokeinfo{
-    display: block;
-    border: none;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
-    width: 100%;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-container{
+  width: 100%;
+  height: 100px;
+  background-color: red;
+}
+.header-container::after{
+  content: "";
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  top: 50px;
+  position: absolute;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 20px;
+  width: 80%;
+  height: auto;
+  top: 300px;
+  background: linear-gradient(180deg, #FFFFFF -19.18%, rgb(255, 255, 255) 171.03%);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 5px;
+  border: 5px solid #FFFFFF;
 }
 
-.pokeinfo__container {
-
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
+.image-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 105px;
+  border-radius: 4px 4px 0px 0px;
+  margin-bottom: 10px;
 }
 
-.pokeinfo__img {
-    display: flex;
-    justify-content: center;
+.pokemon-img-container{
+  position: relative;
+  width: 50%;
+  top: -35%;
+  transform: scale(1.5);
 }
-.pokeinfo span {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+.altura-peso-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  margin: 10px auto;
 }
-.pokeinfo__title__h2{
-    text-align: center;
+.peso-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.pokeinfo__title__h3 {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+.altura-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.pokeinfo__list{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.tipos-habilidades-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
-.pokeinfo__item{
-    text-align: center;
+.tipos-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+.tipos-lista {
+  display: flex;
+  gap: 5px;
+}
+.habilidades-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.habilidades-lista {
+  display: flex;
+  gap: 5px;
+}
+.estadisticas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.estadisticas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.movimientos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  padding: 50px;
+  width: 80%;
+  height: auto;
+  top: 350px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+.movimientos-lista {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  gap: 5px;
+}
+.movimientos-item {
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 15px;
+  position: relative;
+  background: #E5E5E5;
+  border-radius: 50px;
+}
+
+.grass-bg-gradient {
+  background: linear-gradient(178.92deg, #7EC6C5 0.92%, #ABDAC6 47.96%, #CAE099 99.08%) !important;
+}
+
+.fire-bg-gradient {
+  background: linear-gradient(178.92deg, #d10505 0.92%, #ff4e4e 47.96%, #ff8383 99.08%) !important;
+}
+
+.water-bg-gradient {
+  background: linear-gradient(178.92deg, #068dfc 0.92%, #63acff 47.96%, #aadcfd 99.08%) !important;
+}
+
+.default-bg-gradient {
+  background: linear-gradient(178.92deg, #eeff00 0.92%, #fcff54 47.96%, #f0ff9a 99.08%) !important;
+}
+
+.pokemon-id {
+  padding: 1px 5px;
+  border: 1px solid #696969;
+}
+
+.pokemon-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #696969;
+  margin: 10px auto;
+}
+
+.altura-text, .peso-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.altura-num, .peso-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+}
+
+
+
+
+
+
